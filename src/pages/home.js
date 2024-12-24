@@ -3,7 +3,7 @@ import Card from "../components/serviceCard";
 export default function Home() {
     return (
       <>
-        <div className="relative isolate px-6 pt-14 lg:px-8 bg-gray-50" style={{
+        <div className="relative isolate px-6 pt-14 lg:px-8" style={{
     background: "linear-gradient(to right, white, #b3d7f8 50%, white)",
   }}>
          
