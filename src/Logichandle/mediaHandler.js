@@ -105,7 +105,7 @@ export function useMediaHandler() {
 
     setIsGenerating(true);
     try {
-      const response = await axios.post(`${BACKEND_URL}/generate/image`, {
+      const response = await axios.post(`https://ai-saas-backend-teal.vercel.app/generate/image`, {
         prompt,
       });
 
@@ -131,7 +131,7 @@ export function useMediaHandler() {
   
       // Check conditions for different modes
       if (imageMode === 'upload' && audioMode === 'upload') {
-          videoResponse = await axios.post(`${BACKEND_URL}/generate/ownvideo`, {
+          videoResponse = await axios.post('https://ai-saas-backend-teal.vercel.app//generate/ownvideo', {
               imagelink: image,
               audiolink: audio,
               email:email
