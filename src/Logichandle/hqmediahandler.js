@@ -117,7 +117,7 @@ export function HqMediaHandler() {
 
   const createVideo = async (audioMode) => {
 
-    if(!presenter){
+    if(!presenter || !audio || !voiceType){
 
       setError(402)
       return;
