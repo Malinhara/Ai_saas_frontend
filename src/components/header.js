@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useUser } from '../Logichandle/userContex';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,23 +45,23 @@ export default function Header() {
     id="menu-full-dropdown"
   >
     <ul className="py-2">
-      <li>
-        <a
-          href="/signin"
-          className="block px-2 py-2 text-white hover:bg-slate-500"
-        >
-          Sign In
-        </a>
-      </li>
-      <li>
-        <a
-          href="/signup"
-          className="block px-2 py-2 text-white hover:bg-slate-500"
-        >
-          Sign Up
-        </a>
-      </li>
-    </ul>
+  <li>
+    <Link
+      to="/signin"
+      className="block px-2 py-2 text-white hover:bg-slate-500"
+    >
+      Sign In
+    </Link>
+  </li>
+  <li>
+    <Link
+      to="/signup"
+      className="block px-2 py-2 text-white hover:bg-slate-500"
+    >
+      Sign Up
+    </Link>
+  </li>
+</ul>
      </div>
    )}
 
