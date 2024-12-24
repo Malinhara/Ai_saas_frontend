@@ -49,7 +49,7 @@ export default function Googlesignup() {
   const Register = async (userEmail) => {
     try {
    // Send the email to your API to trigger the verification code
-      const response = await axios.post(`${BACKEND_URL}/user/google-register`, { email: userEmail, password: '1234', code: '22344' });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/google-register`, { email: userEmail, password: '1234', code: '22344' });
 
       if (response.status === 201) {
         
