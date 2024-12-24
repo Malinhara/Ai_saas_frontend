@@ -23,7 +23,7 @@ export function HqMediaHandler() {
   useEffect(() => {
     const fetchVoices = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/generate/voicelist`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/generate/voicelist`);
         if (response.data && response.data.data) {
           setVoice(response.data.data);
         } else {
