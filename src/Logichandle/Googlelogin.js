@@ -29,8 +29,7 @@ export default function GoogleLogin() {
   // Send Verification Code to the email after successful Google login
   const Login = async (userEmail) => {
     try {
-      const response = await axios.post(
-        `https://ai-saas-backend-teal.vercel.app/user/google-login`,
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/google-login`,
         { email: userEmail, password: "1234" }
       );
 
@@ -47,7 +46,7 @@ export default function GoogleLogin() {
 
   useEffect(() => {
     window.google.accounts.id.initialize({
-      client_id:"367800385600-hj8iebmm3rh5nok8jhfvlfjcgikoku16.apps.googleusercontent.com",
+      client_id:process.env.REACT_APP_GOOGLEID,
       callback: handleGoogleSignIn,
     });
 
