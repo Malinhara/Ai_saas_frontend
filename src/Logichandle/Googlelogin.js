@@ -47,8 +47,7 @@ export default function GoogleLogin() {
 
   useEffect(() => {
     window.google.accounts.id.initialize({
-      client_id:
-        "367800385600-hj8iebmm3rh5nok8jhfvlfjcgikoku16.apps.googleusercontent.com",
+      client_id:"367800385600-hj8iebmm3rh5nok8jhfvlfjcgikoku16.apps.googleusercontent.com",
       callback: handleGoogleSignIn,
     });
 
