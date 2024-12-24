@@ -30,7 +30,8 @@ export default function VerifyCode({ email }) {
 
     try {
       // Send verification code and password to the server for verification
-      const response = await axios.post(`${BACKEND_URL}/user/register`, { email, code, password });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/register`, { email, code, password });
+  
 
       if (response.status === 201) {
 
