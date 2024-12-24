@@ -71,7 +71,7 @@ export function HqMediaHandler() {
           headers: {
             accept: 'application/json',
             'content-type': 'multipart/form-data',
-            authorization:rocess.env.REACT_APP_DDI,
+            authorization:process.env.REACT_APP_DDI,
           },
         });
         
