@@ -1,5 +1,5 @@
 import axios from "axios";
-import jwtDecode from "jwt-decode"; // Correct import
+import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
