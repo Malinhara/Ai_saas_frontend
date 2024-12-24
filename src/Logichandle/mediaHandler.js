@@ -163,7 +163,7 @@ export function useMediaHandler() {
       if (videoResponse) {
         
           setUrl(videoResponse.data.data.id); // Adjust based on actual response structure
-          // console.log(videoResponse.data.data.id)
+          console.log(videoResponse.data.data.id)
           
           
       }
