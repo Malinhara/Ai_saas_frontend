@@ -47,7 +47,9 @@ export default function Talkimage() {
 
   return (
     <>
-      <div className="container mx-auto px-6 py-36 bg-gray-50 min-h-screen">
+      <div className="container mx-auto px-6 py-36 min-h-screen" style={{
+    background: "linear-gradient(to right, white, #b3d7f8 50%, white)",
+  }}>
         {/* Hero Section */}
         <div className="text-center py-12">
           <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-4">
@@ -60,7 +62,7 @@ export default function Talkimage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
-  <div className="bg-white rounded-xl shadow-lg p-8">
+     <div className="bg-slate-50 rounded-xl shadow-xl p-8">
     <h2 className="text-3xl font-bold text-gray-800 mb-4">Image Tools</h2>
     <p className="text-gray-600 mb-6">
       {imageMode === "generate"
@@ -150,7 +152,7 @@ export default function Talkimage() {
      </div>
 
           {/* Right Column - Audio Tools */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+    <div className="bg-slate-50 rounded-xl shadow-xl p-8">
   <h2 className="text-3xl font-bold text-gray-800 mb-4">
     Audio Tools
   </h2>
