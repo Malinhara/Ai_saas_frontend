@@ -23,7 +23,7 @@ export function useMediaHandler() {
   useEffect(() => {
     const fetchVoices = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/generate/voicelist`);
+        const response = await axios.get('https://loquacious-brigadeiros-962e36.netlify.app//generate/voicelist');
         if (response.data && response.data.data) {
           setVoice(response.data.data);
         } else {
