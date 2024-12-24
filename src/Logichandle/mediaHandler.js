@@ -50,7 +50,7 @@ export function useMediaHandler() {
           headers: {
             accept: 'application/json',
             'content-type': 'multipart/form-data',
-            authorization:Token,
+            authorization:process.env.REACT_APP_DDI,
           },
         });
 
@@ -75,7 +75,7 @@ export function useMediaHandler() {
           headers: {
             accept: 'application/json',
             'content-type': 'multipart/form-data',
-            authorization:Token,
+            authorization:process.env.REACT_APP_DDI,
           },
         });
         
@@ -182,7 +182,7 @@ export function useMediaHandler() {
            const response = await axios.get(`https://api.d-id.com/talks/${url}`, {
             headers: {
               accept: 'application/json',
-              authorization:Token,
+              authorization:process.env.REACT_APP_DDI,
             },
    });
           
