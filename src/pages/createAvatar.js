@@ -41,7 +41,8 @@ export default function CreateAvatar() {
 
   return (
     <>
-      <div className="container mx-auto px-6 py-36 bg-gray-50 min-h-screen">
+      <div className="container mx-auto px-6 py-36 min-h-screen" style={{
+    background: "linear-gradient(to right, white, #b3d7f8 50%, white)",}}>
         {/* Hero Section */}
         <div className="text-center py-12">
           <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-4">
@@ -54,7 +55,7 @@ export default function CreateAvatar() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
-  <div className="bg-white rounded-xl shadow-lg p-8">
+  <div className="bg-slate-50 rounded-xl shadow-xl p-8">
     <h2 className="text-3xl font-bold text-gray-800 mb-4">Select Premium Presenter</h2>
   
       <label className="text-black font-semibold">Choose Presenter</label>
@@ -90,7 +91,7 @@ export default function CreateAvatar() {
      </div>
 
           {/* Right Column - Audio Tools */}
-    <div className="bg-white rounded-xl shadow-lg p-8">
+  <div className="bg-slate-50 rounded-xl shadow-xl p-8">
   <h2 className="text-3xl font-bold text-gray-800 mb-4">
     Audio Tools
   </h2>
