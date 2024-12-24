@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useUser } from '../Logichandle/userContex';
 import { Link } from 'react-router-dom';
+import { useUser } from '../Logichandle/userContex';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,8 +48,7 @@ export default function Header() {
   <li>
     <Link
       to="/signin"
-      className="block px-2 py-2 text-white hover:bg-slate-500"
-    >
+      className="block px-2 py-2 text-white hover:bg-slate-500">
       Sign In
     </Link>
   </li>
@@ -137,31 +136,32 @@ export default function Header() {
                     className="absolute left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-600"
                     id="mega-menu-full-dropdown"
                   >
-                    <ul className="py-2">
-                      <li>
-                        <a
-                          href="/createHqavatar"
-                          className="block px-4 py-3 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                        >
-                          Create HQ Talk Avatar
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                        href="/talkimage"
-                          className="block px-4 py-3 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                          Create Custom Talk Avatar
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-3 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                        >
-                          Other
-                        </a>
-                      </li>
-                    </ul>
+                   <ul className="py-2">
+  <li>
+    <Link
+      to="/createHqavatar" // Use the `to` prop for internal routing
+      className="block px-4 py-3 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      Create HQ Talk Avatar
+    </Link>
+  </li>
+  <li>
+    <Link
+      to="/talkimage" // Use the `to` prop for internal routing
+      className="block px-4 py-3 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      Create Custom Talk Avatar
+    </Link>
+  </li>
+  <li>
+    <Link
+      to="#" // If you want to use an external link or an internal route for "Other"
+      className="block px-4 py-3 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      Other
+    </Link>
+  </li>
+</ul>
                   </div>
                 )}
               </li>
