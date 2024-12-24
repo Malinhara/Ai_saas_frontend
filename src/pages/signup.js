@@ -20,7 +20,7 @@ export default function Signin() {
   
     // Call API to send verification code using axios
     try {
-      const response = await axios.post(`${BACKEND_URL}/user/send-verification-code`, { email});
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/send-verification-code`, { email});
   
       if (response.status !== 201) {
         throw new Error('Failed to send verification code.');
