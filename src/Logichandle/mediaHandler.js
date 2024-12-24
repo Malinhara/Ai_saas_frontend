@@ -23,7 +23,7 @@ export function useMediaHandler() {
   useEffect(() => {
     const fetchVoices = async () => {
       try {
-        const response = await axios.get('https://ai-saas-backend-teal.vercel.app/generate/voicelist');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/generate/voicelist`);
         if (response.data && response.data.data) {
           setVoice(response.data.data);
         } else {
@@ -105,7 +105,7 @@ export function useMediaHandler() {
 
     setIsGenerating(true);
     try {
-      const response = await axios.post(`https://ai-saas-backend-teal.vercel.app/generate/image`, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/image`, {
         prompt,
       });
 
@@ -131,27 +131,27 @@ export function useMediaHandler() {
   
       // Check conditions for different modes
       if (imageMode === 'upload' && audioMode === 'upload') {
-          videoResponse = await axios.post('https://ai-saas-backend-teal.vercel.app//generate/ownvideo', {
+          videoResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/ownvideo`, {
               imagelink: image,
               audiolink: audio,
               email:email
           },getConfig() );
 
       } else if (imageMode === 'generate' && audioMode === 'upload') {
-          videoResponse = await axios.post(`${BACKEND_URL}/generate/ownvideo`, {
+          videoResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/ownvideo`, {
               imagelink: gptimage,
               audiolink: audio,
               email:email
           },getConfig() );
       } else if (imageMode === 'generate' && audioMode === 'generate') {
-          videoResponse = await axios.post(`${BACKEND_URL}/generate/video`, {
+          videoResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/video`, {
               imagelink: gptimage,
               voiceid: voiceType,
               prompt: audioprompt,
               email:email
           },getConfig() );
       } else if (imageMode === 'upload' && audioMode === 'generate') {
-          videoResponse = await axios.post(`${BACKEND_URL}/generate/video`, {
+          videoResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/video`, {
               imagelink: image,
               voiceid: voiceType,
               prompt: audioprompt,
