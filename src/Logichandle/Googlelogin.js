@@ -49,7 +49,7 @@ export default function GoogleLogin() {
     try {
     
       // Send the email to your API to trigger the verification code
-      const response = await axios.post(`${BACKEND_URL}/user/google-login`, { email: userEmail, password: '1234' });
+      const response = await axios.post(`https://loquacious-brigadeiros-962e36.netlify.app/user/google-login`, { email: userEmail, password: '1234' });
 
       if (response.status === 201) {
         localStorage.setItem('token', response.data.token);
