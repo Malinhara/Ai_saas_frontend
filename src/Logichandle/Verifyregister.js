@@ -32,7 +32,7 @@ export default function VerifyCode({ email }) {
       // Send verification code and password to the server for verification
       const response = await axios.post(`${BACKEND_URL}/user/register`, { email, code, password });
 
-      if (response.status == 201) {
+      if (response.status === 201) {
 
           navigate('/signin')
       }

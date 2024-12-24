@@ -24,7 +24,7 @@ export default function GoogleLogin() {
         shape: "pill",
       }
     );
-  }, []);
+  }, [handleGoogleSignIn]);
 
   // Handle Google Sign-In
   const handleGoogleSignIn = (response) => {

@@ -14,7 +14,7 @@ export function useMediaHandler() {
   const [audioprompt, setaudioPrompt] = useState("");
   const [voiceType, setVoiceType] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [isMakingVideo, setIsMakingVideo] = useState(false);
+  const [isMakingVideo] = useState(false);
   const [url,setUrl] = useState(null);
   const [error, setError] = useState(null);
 

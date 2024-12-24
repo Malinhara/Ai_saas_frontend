@@ -13,8 +13,8 @@ export function HqMediaHandler() {
   const [presenterimg,setPresenterimg]= useState(null);
   const [audioprompt, setaudioPrompt] = useState("");
   const [voiceType, setVoiceType] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [isMakingVideo, setIsMakingVideo] = useState(false);
+  const [isGenerating] = useState(false);
+  const [isMakingVideo] = useState(false);
   const [url,setUrl] = useState(null);
   const [error, setError] = useState(null);
   const email = getStatus();
