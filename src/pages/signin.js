@@ -24,7 +24,7 @@ export default function Signin() {
 
     try {
       
-      const response = await axios.post(`https://loquacious-brigadeiros-962e36.netlify.app/user/login`, { email, password });
+      const response = await axios.post(`https://ai-saas-backend-teal.vercel.app/user/login`, { email, password });
 
       if (response.status === 201) {
         localStorage.setItem('token', response.data.token);
