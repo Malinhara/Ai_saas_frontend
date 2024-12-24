@@ -42,7 +42,7 @@ export function HqMediaHandler() {
   useEffect(() => {
     const fetchPresters = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/generate/hqpresenters`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/generate/hqpresenters`);
         console.log(response)
         if (response.data && response.data.data.presenters) {
           setPresenters(response.data.data.presenters);
@@ -71,7 +71,7 @@ export function HqMediaHandler() {
           headers: {
             accept: 'application/json',
             'content-type': 'multipart/form-data',
-            authorization:Token,
+            authorization:rocess.env.REACT_APP_DDI,
           },
         });
         
@@ -99,7 +99,7 @@ export function HqMediaHandler() {
         console.log(presenter)
       const getPresenter = async () => {
         try {
-          const response = await axios.post(`${BACKEND_URL}/generate/hqpresenter`, {
+          const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/hqpresenter`, {
             id: presenter // Send `presenter` as part of the request body
           });
 
@@ -129,7 +129,7 @@ export function HqMediaHandler() {
   
       // Check conditions for different modes
       if ( audioMode === 'upload') {
-          videoResponse = await axios.post(`${BACKEND_URL}/generate/hqownvideo`, {
+          videoResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/hqownvideo`, {
             presenterid: presenter,
             audiolink: audio,
             email:email
@@ -137,7 +137,7 @@ export function HqMediaHandler() {
         }
 
        else if (audioMode === 'generate') {
-          videoResponse = await axios.post(`${BACKEND_URL}/generate/hqvideo`, {
+          videoResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/hqvideo`, {
               presenterid: presenter,
               voiceid: voiceType,
               prompt: audioprompt,
@@ -168,7 +168,7 @@ export function HqMediaHandler() {
            const response = await axios.get(`https://api.d-id.com/clips/${url}`, {
             headers: {
               accept: 'application/json',
-              authorization:Token,
+              authorization:process.env.REACT_APP_DDI,
             },
            });
           
