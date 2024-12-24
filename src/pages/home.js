@@ -1,4 +1,5 @@
 import Card from "../components/serviceCard";
+import VideoLayout from "../components/VideoLayout";
 
 export default function Home() {
     return (
@@ -49,6 +50,8 @@ export default function Home() {
    </div>
    
       <Card/>
+
+      <VideoLayout/>
         </div>
       </>
     );
