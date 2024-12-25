@@ -200,17 +200,20 @@ export default function CreateAvatar() {
 
         {/* Video Tools */}
   <div className="mt-4">
-  <div className="flex flex-col items-center">
+<div className="flex flex-col items-center">
  
 
       {/* Make Video Button */}
-      <button
-        onClick={() => createVideo(audioMode)}
-        className="w-60 bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md mt-4 hover:bg-indigo-500 transition duration-300"
-        disabled={isMakingVideo} // Disable while video is being created
-      >
-        {isMakingVideo ? "Making Video..." : "Make Video"}
-      </button>
+
+      {( (audio ) || (audioprompt && voiceType) ) && (
+     <button
+    onClick={() => createVideo(audioMode)}
+    className="w-60 bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md mt-4 hover:bg-indigo-500 transition duration-300"
+    disabled={isMakingVideo} // Disable while video is being created
+    >
+    {isMakingVideo ? "Making Video..." : "Make Video"}
+  </button>
+    )}
 
          {error && error === 402 && <Alertgenerate onClose={handleCloseAlert} />}
 
@@ -218,15 +221,15 @@ export default function CreateAvatar() {
          {error && error === 405 && <Alertstatus onClose={handleCloseAlert} />}
 
      
-        <button
+        {url && ( 
+          <button
           onClick={viewVideo} // Trigger the viewVideo function on click
-          className="w-60 bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md mt-4 hover:bg-indigo-500 transition duration-300"
-        >
+          className="w-60 bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md mt-4 hover:bg-indigo-500 transition duration-300">
           View Video
         </button>
+      )}
 
-
-</div>
+     </div>
 
       {video !== "" && (
         <video controls src={video} className="w-full rounded-lg shadow-md mt-4" />
