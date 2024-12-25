@@ -29,6 +29,7 @@ export default function CreateAvatar() {
     setPresenter,
     audioprompt,
     error,
+    url,
     setError,
     viewVideo,
     setVoiceType,
