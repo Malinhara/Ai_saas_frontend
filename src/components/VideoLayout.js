@@ -60,7 +60,7 @@ const VideoLayout = () => {
             <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden">
             <video
             id="mainVideo"
-            className="w-2/3 h-auto object-cover"
+            className="h-auto object-cover"
              src="/upload/talkingPreview.mp4"
                playsInline
                loop
