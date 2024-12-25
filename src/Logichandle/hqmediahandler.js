@@ -117,11 +117,28 @@ export function HqMediaHandler() {
 
   const createVideo = async (audioMode) => {
 
-    if(!presenter || !audio || !voiceType){
+
+    if(audioMode === 'generate'){
+       
+      if(!presenter || !audioprompt || !voiceType){
+
+      setError(402)
+      return;
+        
+     }
+   }
+        
+   else {
+
+     if(!presenter || !audio){
 
       setError(402)
       return;
     }
+
+    }
+
+  
 
 
     try {
