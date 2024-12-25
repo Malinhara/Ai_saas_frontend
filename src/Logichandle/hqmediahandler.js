@@ -117,6 +117,16 @@ export function HqMediaHandler() {
 
   const createVideo = async (audioMode) => {
 
+    if(audioMode=='generate'&& !audioprompt && !presenter && !voiceType ){
+
+      setError(402);
+    }
+
+    else if(audioMode=='upload' && !audio && !presenter){
+
+       setError(402);
+
+    }
 
     try {
       let videoResponse;  // Declare the videoResponse variable outside the conditions.
