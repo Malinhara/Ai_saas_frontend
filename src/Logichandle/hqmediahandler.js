@@ -118,29 +118,6 @@ export function HqMediaHandler() {
   const createVideo = async (audioMode) => {
 
 
-    if(audioMode === 'generate'){
-       
-      if(!presenter || !audioprompt || !voiceType){
-
-      setError(402)
-      return;
-        
-     }
-   }
-        
-   else {
-
-     if(!presenter || !audio){
-
-      setError(402)
-      return;
-    }
-
-    }
-
-  
-
-
     try {
       let videoResponse;  // Declare the videoResponse variable outside the conditions.
   
