@@ -117,18 +117,17 @@ export function HqMediaHandler() {
 
   const createVideo = async (audioMode) => {
 
-    if(audioMode=='generate'&& !audioprompt && !presenter && !voiceType ){
-
-      setError(402);
-    }
-
-    else if(audioMode=='upload' && !audio && !presenter){
-
-       setError(402);
-
-    }
-
     try {
+      
+       if (
+        (audioMode === "generate" && (!audioprompt || !presenter || !voiceType)) || 
+        (audioMode === "upload" && (!audio || !presenter))
+      ) {
+        setError(402);
+        console.error("Missing required fields for the selected audio mode.");
+        return;
+      }
+
       let videoResponse;  // Declare the videoResponse variable outside the conditions.
   
       // Check conditions for different modes
