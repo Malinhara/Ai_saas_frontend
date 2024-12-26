@@ -1,4 +1,4 @@
-import { Camera, Download, Share2 } from 'lucide-react';
+import { Camera } from 'lucide-react';
 import React from 'react';
 
 const ImageGalleryPage = () => {
@@ -21,11 +21,11 @@ const ImageGalleryPage = () => {
         <div className="flex items-center justify-center gap-3 mb-12">
           <Camera className="w-10 h-10 text-pink-400 animate-pulse" />
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
-            AI Gallery
+            AI <span  className='text-black'>Gallery</span>
           </h1>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((image) => (
             <div
               key={image.id}
