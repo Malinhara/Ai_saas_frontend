@@ -1,3 +1,4 @@
+import ImageGalleryPage from "../components/gallery";
 import Card from "../components/serviceCard";
 import VideoLayout from "../components/VideoLayout";
 
@@ -51,7 +52,9 @@ export default function Home() {
    
       <Card/>
 
-      <VideoLayout/>
+
+      <VideoLayout/> 
+      <ImageGalleryPage/>
         </div>
       </>
     );
