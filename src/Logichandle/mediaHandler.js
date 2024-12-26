@@ -178,6 +178,9 @@ export function useMediaHandler() {
   const viewVideo = async () => {
 
          try{
+
+           
+          console.log(url)
   
            const response = await axios.get(`https://api.d-id.com/talks/${url}`, {
             headers: {
