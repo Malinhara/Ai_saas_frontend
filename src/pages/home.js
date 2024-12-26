@@ -54,7 +54,7 @@ export default function Home() {
 
 
       <VideoLayout/> 
-      <ImageGalleryPage/>
+        <ImageGalleryPage/>
         </div>
       </>
     );
