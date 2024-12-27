@@ -30,6 +30,7 @@ export default function Talkimage() {
     audioprompt,
     error,
     setError,
+    url,
     viewVideo,
     setVoiceType,
     handleImageUpload,
@@ -301,17 +302,17 @@ export default function Talkimage() {
       </button>
     )
   )}
+
+  {url && ( 
+          <button
+          onClick={viewVideo} // Trigger the viewVideo function on click
+          className="w-60 bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md mt-4 hover:bg-indigo-500 transition duration-300">
+          View Video
+        </button>
+      )}
 </div>
 
 
-<div className="flex items-center justify-center ">
-  <button
-    onClick={viewVideo} // Trigger the viewVideo function on click
-    className="w-60 bg-indigo-500 align-middle text-white px-4 py-2 rounded-lg shadow-md mt-4 "
-  >
-    View Video
-  </button>
-</div>
 
 
       {/* Only display the video if the video URL is set */}
