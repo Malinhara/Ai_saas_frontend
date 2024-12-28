@@ -103,7 +103,6 @@ export function useMediaHandler() {
 
   const generateImage = async () => {
 
-    setIsGenerating(true);
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/image`, {
         prompt,
@@ -115,9 +114,7 @@ export function useMediaHandler() {
     } catch (err) {
       console.error("Error generating image:", err);
       alert("Something went wrong while generating the image. Please try again.");
-    } finally {
-      setIsGenerating(false);
-    }
+    } 
  
   };
 
