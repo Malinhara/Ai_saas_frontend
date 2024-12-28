@@ -51,6 +51,7 @@ export default function Talkimage() {
       <div className="container mx-auto px-6 py-36 min-h-screen" style={{
     background: "linear-gradient(to right, white, #b3d7f8 50%, white)",
   }}>
+   {error && error === 401 && <Alert onClose={handleCloseAlert} />}
         {/* Hero Section */}
         <div className="text-center py-12">
           <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-4">
