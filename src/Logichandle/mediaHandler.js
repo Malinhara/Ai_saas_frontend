@@ -124,7 +124,7 @@ export function useMediaHandler() {
       
       
       const character_type = "person";
-      const style = "should be portrait and Looking ahead";
+      const style = "should be portrait and facing the camera";
       const description = prompt;
   
       // Function to generate the prompt string
