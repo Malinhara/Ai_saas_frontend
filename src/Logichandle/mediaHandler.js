@@ -106,9 +106,17 @@ export function useMediaHandler() {
 
     const apiKey = process.env.REACT_APP_OPENAI_API_KEY
 
-    setIsGenerating(true);
     try {
+    const config = getConfig();
 
+    if (config.error ) {
+      // If there's an error in the config, set error and stop execution
+      setError(401); // Set error for unauthorized access
+      return;
+    }
+
+    setIsGenerating(true);
+      
       const openai = new OpenAI({
         apiKey: apiKey, 
         dangerouslyAllowBrowser: true, // Allow browser usage
