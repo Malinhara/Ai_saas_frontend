@@ -5,7 +5,7 @@ export const getConfig = () => {
 
   if (!token) {
     console.error("Token not found");
-    return {};
+    return {error: true};
   }
 
   // Decode the JWT token to get user information (including 'status')
