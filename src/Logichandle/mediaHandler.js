@@ -101,27 +101,24 @@ export function useMediaHandler() {
   };
 
 
- const generateImage = async () => {
+  const generateImage = async () => {
+
     setIsGenerating(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/generate/image`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt }),
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/image`, {
+        prompt,
       });
-  
-      const data = await response.json();
-      console.log('Response from backend:', data);
-  
-      setGptImage(data.data.imageUrl);  // Update with the image URL from the response
+
+      console.log(response)
+      setGptImage(response.data.data.imageUrl); // Update with the image URL from the response
+
     } catch (err) {
       console.error("Error generating image:", err);
       alert("Something went wrong while generating the image. Please try again.");
     } finally {
       setIsGenerating(false);
     }
+ 
   };
 
   // imagelink ,voiceid ,prompt
