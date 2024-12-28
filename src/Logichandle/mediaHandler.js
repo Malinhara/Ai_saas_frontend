@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { getConfig, getStatus } from './Auth';
+import OpenAI from "openai";
 import BACKEND_URL from '../config';
 import Token from '../Token';
 
@@ -103,23 +104,47 @@ export function useMediaHandler() {
 
   const generateImage = async () => {
 
+    const apiKey = process.env.REACT_APP_OPENAI_API_KEY
+
     setIsGenerating(true);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate/image`, {
-        prompt,
+
+      const openai = new OpenAI({
+        apiKey: apiKey, 
+        dangerouslyAllowBrowser: true, // Allow browser usage
       });
+      
+      
+      const character_type = "person";
+      const style = "portrait";
+      const description = prompt;
+  
+      // Function to generate the prompt string
+      const createPrompt = (character_type, style, description) => {
+        return `A ${character_type}, in a ${style} style, with ${description}.`;
+      };
+  
+      // Generate the prompt
+      const generated_prompt = createPrompt(character_type, style, description);
+  
+      const response = await openai.images.generate({
+        model: "dall-e-3", // Specify the model
+        prompt: generated_prompt ,    // User-provided prompt
+        n: 1,              // Number of images to generate
+        size: "1024x1024", // Resolution of the generated image
+      });
+  
+      setGptImage(response.data[0].url);
+  
+    } catch (error) {
+      console.error("Error generating image:", error.message);
+    }
 
-      console.log(response)
-      setGptImage(response.data.data.imageUrl); // Update with the image URL from the response
-
-    } catch (err) {
-      console.error("Error generating image:", err);
-      alert("Something went wrong while generating the image. Please try again.");
-    } finally {
+    finally {
       setIsGenerating(false);
     }
- 
   };
+
 
   // imagelink ,voiceid ,prompt
 
