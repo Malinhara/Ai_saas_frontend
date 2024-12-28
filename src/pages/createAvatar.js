@@ -3,16 +3,22 @@ import { HqMediaHandler } from "../Logichandle/hqmediahandler";
 import Alert from "../components/alertBtn";
 import Alertgenerate from "../components/alertGenerate";
 import Alertstatus from "../components/alertstatus";
+import Info from "../components/info";
 
 export default function CreateAvatar() {
 
   const [audioMode, setAudioMode] = useState("generate"); // Manage audio mode
   const [uploadaudio,setUploadaudio] = useState();
-
+  const [showInfo, setShowInfo] = useState(false);
 
   const handleCloseAlert = () => {
     setError(null); // Close the alert by resetting the error state
   };
+
+  const toggleInfo = () => {
+    setShowInfo(prevShowInfo => !prevShowInfo); // Toggle between true and false
+  };
+
   // const [audioMode, setAudioMode] = useState("generate"); // Manage audio mode
 
 
@@ -224,11 +230,16 @@ export default function CreateAvatar() {
      
         {url && ( 
           <button
-          onClick={viewVideo} // Trigger the viewVideo function on click
+          onClick={() => {
+                  toggleInfo(); // Show Info component when clicked
+                   viewVideo();  // Optionally, call the viewVideo function
+                   }}  // Trigger the viewVideo function on click
           className="w-60 bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md mt-4 hover:bg-indigo-500 transition duration-300">
           View Video
         </button>
       )}
+
+    {showInfo && <Info onClose={toggleInfo} />}
 
      </div>
 
