@@ -218,7 +218,7 @@ export function useMediaHandler() {
            const response = await axios.get(`https://api.d-id.com/talks/${url}`, {
             headers: {
               accept: 'application/json',
-              authorization:process.env.REACT_APP_DDI,
+              authorization:process.env.APP_DDI,
             },
    });
           
