@@ -42,52 +42,52 @@ export function useMediaHandler() {
 
   const handleImageUpload = async (file) => {
 
-    if (file) {
-      const formData = new FormData();
-      formData.append('image', file);
+    // if (file) {
+    //   const formData = new FormData();
+    //   formData.append('image', file);
 
-      try {
-        const response = await axios.post('https://api.d-id.com/images', formData, {
-          headers: {
-            accept: 'application/json',
-            'content-type': 'multipart/form-data',
-            authorization:process.env.REACT_APP_DDI,
-          },
-        });
+    //   try {
+    //     const response = await axios.post('https://api.d-id.com/images', formData, {
+    //       headers: {
+    //         accept: 'application/json',
+    //         'content-type': 'multipart/form-data',
+    //         authorization:process.env.REACT_APP_DDI,
+    //       },
+    //     });
 
-        console.log(response)
-        setImage(response.data.url); // Set the response as the image
+    //     console.log(response)
+    //     setImage(response.data.url); // Set the response as the image
 
-      } catch (error) {
-        console.error('Error uploading image:', error);
-      }
-    }
+    //   } catch (error) {
+    //     console.error('Error uploading image:', error);
+    //   }
+    // }
   };
 
   const handleAudioUpload = async (file) => {
 
-    if (file) {
-      const formData = new FormData();
-      formData.append('audio', file);
+    // if (file) {
+    //   const formData = new FormData();
+    //   formData.append('audio', file);
      
 
-      try {
-        const response = await axios.post('https://api.d-id.com/audios', formData, {
-          headers: {
-            accept: 'application/json',
-            'content-type': 'multipart/form-data',
-            authorization:process.env.REACT_APP_DDI,
-          },
-        });
+    //   try {
+    //     const response = await axios.post('https://api.d-id.com/audios', formData, {
+    //       headers: {
+    //         accept: 'application/json',
+    //         'content-type': 'multipart/form-data',
+    //         authorization:process.env.REACT_APP_DDI,
+    //       },
+    //     });
         
-        console.log(response)
+    //     console.log(response)
     
-        setAudio(response.data.url); // Set the response as the audio
+    //     setAudio(response.data.url); // Set the response as the audio
       
-      } catch (error) {
-        console.error('Error uploading audio:', error);
-      }
-    }
+    //   } catch (error) {
+    //     console.error('Error uploading audio:', error);
+    //   }
+    // }
   };
 
   const handlePromptChange = (event) => {
