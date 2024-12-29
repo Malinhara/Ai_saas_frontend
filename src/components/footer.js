@@ -14,7 +14,7 @@ export default function Footer() {
                   alt="FlowBite Logo"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Image AI King
+                  VISUALS
                 </span>
               </a>
             </div>
