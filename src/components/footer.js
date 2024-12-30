@@ -9,9 +9,9 @@ export default function Footer() {
             <div className="mb-6 md:mb-0">
               <a href="/upload/logo.png" className="flex items-center">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src="/upload/logo.png"
                   className="h-8 me-3"
-                  alt="FlowBite Logo"
+                  alt="VISULAS Logo"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                   VISUALS
