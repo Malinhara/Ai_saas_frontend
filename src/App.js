@@ -8,6 +8,7 @@ import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 import Talkimage from "./pages/talkimage";
 import ContactPage from "./pages/contact";
+import Mainchat from "./pages/mainchat";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/service" element={<ServicesPage/>}/>
         <Route path="/contact" element={<ContactPage/>}/>
+        <Route path="/chat" element={<Mainchat/>}/>
       </Routes>
       <Footer />
     </Router>
