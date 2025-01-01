@@ -230,33 +230,48 @@ const Sidebar = () => {
         </Modal>
 
         {/* Tweet Modal */}
-        <Modal
-          isOpen={isTweetModalOpen}
-          onRequestClose={() => setTweetModalOpen(false)}
-          className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto mt-20"
-          overlayClassName="bg-gray-800 bg-opacity-50 fixed inset-0 flex items-center justify-center"
-        >
-          <h2 className="text-xl font-bold mb-4">Send or Schedule Tweet</h2>
-          <textarea
-            placeholder="Write your tweet here..."
-            value={tweet}
-            onChange={(e) => setTweet(e.target.value)}
-            className="w-full px-4 py-2 mb-4 border rounded h-24"
-          />
-          <input
-            type="text"
-            placeholder="Enter time or 'Just Now'"
-            value={schedule}
-            onChange={(e) => setSchedule(e.target.value)}
-            className="w-full px-4 py-2 mb-4 border rounded"
-          />
-          <button
-            onClick={handleSendTweet}
-            className="w-full px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-          >
-            Submit
-          </button>
-        </Modal>
+       <Modal
+  isOpen={isTweetModalOpen}
+  onRequestClose={() => setTweetModalOpen(false)}
+  className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto mt-20"
+  overlayClassName="bg-gray-800 bg-opacity-50 fixed inset-0 flex items-center justify-center"
+>
+  <h2 className="text-xl font-bold mb-4">Send or Schedule Tweet</h2>
+  <textarea
+    placeholder="Write your tweet here..."
+    value={tweet}
+    onChange={(e) => setTweet(e.target.value)}
+    className="w-full px-4 py-2 mb-4 border rounded h-24"
+  />
+  <select
+    value={schedule === 'Just Now' ? 'Just Now' : 'Custom'}
+    onChange={(e) => {
+      if (e.target.value === 'Just Now') {
+        setSchedule('Just Now');
+      } else {
+        setSchedule(''); // Clear schedule to allow time picker input
+      }
+    }}
+    className="w-full px-4 py-2 mb-4 border rounded"
+  >
+    <option value="Just Now">Just Now</option>
+    <option value="Custom">Custom Time</option>
+  </select>
+  {schedule !== 'Just Now' && (
+    <input
+      type="time"
+      value={schedule}
+      onChange={(e) => setSchedule(e.target.value)}
+      className="w-full px-4 py-2 mb-4 border rounded"
+    />
+  )}
+  <button
+    onClick={handleSendTweet}
+    className="w-full px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+  >
+    Submit
+  </button>
+   </Modal>
       </div>
     </>
   );
