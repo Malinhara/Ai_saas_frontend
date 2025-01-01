@@ -178,7 +178,7 @@ const Sidebar = () => {
            Click here to view the guide
            </a>
         {/* Twitter Modal */}
-        <Modal
+       <Modal
           isOpen={isTwitterModalOpen}
           onRequestClose={() => setTwitterModalOpen(false)}
           className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto mt-20"
@@ -187,7 +187,7 @@ const Sidebar = () => {
           <h2 className="text-xl font-bold mb-4">Connect to Twitter</h2>
           <input
             type="text"
-            placeholder="App Key"
+            placeholder="Api Key"
             value={credentials.appKey}
             onChange={(e) =>
               setCredentials({ ...credentials, appKey: e.target.value })
@@ -196,7 +196,7 @@ const Sidebar = () => {
           />
           <input
             type="text"
-            placeholder="App Secret"
+            placeholder="Api Secret"
             value={credentials.appSecret}
             onChange={(e) =>
               setCredentials({ ...credentials, appSecret: e.target.value })
@@ -214,7 +214,7 @@ const Sidebar = () => {
           />
           <input
             type="text"
-            placeholder="Access Secret"
+            placeholder="Access Token Secret"
             value={credentials.accessSecret}
             onChange={(e) =>
               setCredentials({ ...credentials, accessSecret: e.target.value })
@@ -228,6 +228,7 @@ const Sidebar = () => {
             Submit
           </button>
         </Modal>
+
 
         {/* Tweet Modal */}
        <Modal
