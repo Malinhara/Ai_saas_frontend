@@ -9,6 +9,8 @@ import Signup from "./pages/signup";
 import Talkimage from "./pages/talkimage";
 import ContactPage from "./pages/contact";
 import Mainchat from "./pages/mainchat";
+import BotConfig from "./pages/botConfigure";
+import AgentManagement from "./components/AgentManagment";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/service" element={<ServicesPage/>}/>
         <Route path="/contact" element={<ContactPage/>}/>
         <Route path="/chat" element={<Mainchat/>}/>
+        <Route path="/botconfigure" element={<BotConfig/>}/>
+        <Route path="/agentmnagment" element={<AgentManagement/>}/>
       </Routes>
       <Footer />
     </Router>
