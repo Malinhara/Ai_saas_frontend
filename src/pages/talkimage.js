@@ -149,13 +149,16 @@ export default function Talkimage() {
           alt="Generated or Uploaded"
           className="w-full rounded-lg shadow-md"
         />
-        {/* <a
+       <div className="mt-4">
+        <a
           href={imageMode === "generate" ? gptimage : uploadimage}
-          download="image.png"
-          className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md mt-4 inline-block text-center hover:bg-blue-500 transition duration-300"
+          target="_blank" // Opens in a new window/tab
+          rel="noopener noreferrer" // Security feature
+          className="inline-block px-6 py-2 mt-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700"
         >
-          Download Image
-        </a> */}
+          Open Image in New Window
+        </a>
+      </div>
       </div>
     ) : null}
          
