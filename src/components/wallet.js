@@ -1,4 +1,4 @@
-import { Connection } from '@solana/web3.js';
+
 import { Buffer } from 'buffer';
 import React, { useEffect, useState } from 'react';
 
@@ -9,7 +9,6 @@ const PhantomWallet = () => {
   const [status, setStatus] = useState('');
   const [isConnecting, setIsConnecting] = useState(false);
 
-  const connection = new Connection('https://api.devnet.solana.com', 'confirmed'); // Solana Devnet
 
   const getProvider = () => {
     if ('phantom' in window) {
