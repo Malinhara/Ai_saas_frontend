@@ -6,7 +6,9 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [generateDropdownOpen, setGeberateDropdownOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to control dropdown visibility
-
+  const [showModal, setShowModal] = useState(false); // State for modal visibility
+  const navigate = useNavigate();
+  
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen); // Toggle the dropdown
   };
@@ -18,8 +20,26 @@ export default function Header() {
     setGeberateDropdownOpen(!generateDropdownOpen);
   };
 
+
+  
+
   const { user, logout } = useUser(); // Access user context
 
+
+    const handleChatClick = () => {
+    if (!user.isLoggedIn) {
+      setShowModal(true); // Show the modal if the user is not logged in
+    }
+    else{
+    
+      navigate('/aImarketplace')
+      
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false); // Close the modal
+  };
 
   return (
     <>
@@ -184,16 +204,40 @@ export default function Header() {
               </li>
                <li>
                 <a
-                  href="/agentmnagment"
+                  onClick={handleChatClick}
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                  Chat Bot
+                  Chat Agent
                 </a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+        {showModal && (
+        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm">
+            <h2 className="text-lg font-bold text-gray-800">Access Restricted</h2>
+            <p className="text-gray-600 mt-2">
+              You need to be logged in to access the Chat feature. Please sign in or sign up.
+            </p>
+            <div className="mt-4 flex justify-end space-x-3">
+              <button
+                onClick={closeModal}
+                className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+              >
+                Close
+              </button>
+              <Link
+                to="/signin"
+                className="px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300"
+              >
+                Sign In
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
