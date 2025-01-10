@@ -1,4 +1,5 @@
 import { jwtDecode } from "jwt-decode";
+import { Navigate } from "react-router-dom";
 
 export const getConfig = () => {
   const token = localStorage.getItem('token'); // Retrieve token from localStorage
@@ -25,6 +26,19 @@ export const getConfig = () => {
 
 export const getStatus = () => {
  // Retrieve status from localStorage
-  const email = localStorage.getItem('email'); 
+  const email = localStorage.getItem('email');
   return email ;; // Return the stored status
 };
+
+const PrivateRoute = ({ children }) => {
+  const agent = localStorage.getItem('agent'); // Check if 'agent' exists in localStorage
+
+  if (!agent) {
+    // Redirect if 'agent' is not set or invalid
+    return <Navigate to="/aImarketplace" replace />;
+  }
+
+  return children;
+};
+
+export default PrivateRoute;
