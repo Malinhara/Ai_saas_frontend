@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "https://ai-saas-backend-seven.vercel.app",
-   "dependencies": {
+    "dependencies": {
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.98.0",
     "axios": "^1.7.9",
+    "buffer": "^6.0.3",
     "cra-template": "1.2.0",
     "dotenv": "^16.4.7",
     "env": "^0.0.2",
