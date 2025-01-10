@@ -1,124 +1,181 @@
 import axios from 'axios';
+import { Upload } from 'lucide-react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PhantomWallet from '../components/wallet';
 import { getStatus } from '../Logichandle/Auth';
 
 const BotConfig = () => {
-  const navigate = useNavigate();
   const email = getStatus();
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: 'Percy Verence',
     nickname: 'Percy Verence',
+    tickerName: '',
+    age: 18,
     shortBio: 'ex. A friendly wizard with round glasses',
-    avatar: '/api/placeholder/192/192', // Default placeholder
+    avatar: null, // Updated to store file instead of URL
+    description: '',
+    personality: '',
+    firstMessage: '',
+    lore: '',
+    style: '',
+    adjectives: '',
+    knowledge: '',
   });
+
   const [loading, setLoading] = useState(false);
+  const [saveStatus, setSaveStatus] = useState('');
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file && file.size > 2 * 1024 * 1024) { // 2 MB size limit
+        alert('File size exceeds 2 MB.');
+        return;
+    }
+    if (file && !['image/jpeg', 'image/png'].includes(file.type)) {
+        alert('Only JPEG or PNG files are allowed.');
+        return;
+    }
+    setFormData({ ...formData, avatar: file });
+};
 
   const handleSave = async () => {
-    setLoading(true); // Show loading state
+    setLoading(true);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/chat/save`, {
-        name: formData.name,
-        nickname: formData.nickname,
-        shortBio: formData.shortBio,
-        email:email,
-        avatar: formData.avatar, // Include avatar URL in payload
-      });
+      const payload = new FormData();
+      payload.append('name', formData.name);
+      payload.append('nickname', formData.nickname);
+      payload.append('shortBio', formData.shortBio);
+      payload.append('email', email);
+      payload.append('tickerName', formData.tickerName);
+      payload.append('age', formData.age);
+      payload.append('avatar', formData.avatar); // Append the file
+      payload.append('description', formData.description);
+      payload.append('personality', formData.personality);
+      payload.append('firstMessage', formData.firstMessage);
+      payload.append('lore', formData.lore);
+      payload.append('style', formData.style);
+      payload.append('adjectives', formData.adjectives);
+      payload.append('knowledge', formData.knowledge);
+
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/user/chat/save`,
+        payload,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
 
       if (!response || response.status !== 201) {
         throw new Error('Failed to save bot configuration');
       }
 
       alert('Bot saved successfully!');
+      localStorage.setItem('agent',1)
       navigate('/chat');
     } catch (error) {
       console.error('Error saving bot:', error);
       alert('Error saving bot configuration.');
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
 
+  const renderInput = (label, field, description = '', type = 'text') => (
+    <div className="space-y-2">
+      <label className="block text-sm font-medium">{label}</label>
+      {description && <p className="text-xs text-gray-500">{description}</p>}
+      <input
+        type={type}
+        value={formData[field]}
+        onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+        className="w-full bg-gray-900 rounded-lg p-2 text-white"
+      />
+    </div>
+  );
+
+  const renderTextarea = (label, field, description = '') => (
+    <div className="space-y-2">
+      <label className="block text-sm font-medium">{label}</label>
+      {description && <p className="text-xs text-gray-500">{description}</p>}
+      <textarea
+        value={formData[field]}
+        onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+        className="w-full bg-gray-900 rounded-lg p-2 text-white min-h-24"
+      />
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-black text-gray-300 p-6">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-gray-300 text-lg font-medium">BASIC</h1>
-        <button className="flex items-center gap-2 text-gray-300">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
-          Documentation
-        </button>
+    <div className="min-h-screen bg-black text-gray-300 p-16">
+      <div className="flex justify-between items-center mb-11 float-right">
+        <PhantomWallet />
       </div>
 
-      <div className="flex gap-8">
-        <div className="w-48 h-48 bg-gray-800 rounded-lg overflow-hidden">
-          <img
-            src={formData.avatar}
-            alt="Character Avatar"
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <div className="space-y-8">
+        {/* Identity Section */}
+        <section className="bg-gray-900 rounded-lg p-6">
+          <h2 className="text-lg font-medium mb-6">Identity</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-6">
+              {renderInput('AI AGENT NAME', 'name')}
+              {renderInput('TICKER NAME', 'tickerName', 'This field is required')}
+              {renderInput('AI AGENT AGE', 'age', 'Minimum age is 18', 'number')}
 
-        <div className="flex-1 space-y-6">
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Name</label>
-            <p className="text-xs text-gray-500">The name displayed on the character card</p>
-            <input
-              type="text"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full bg-gray-900 rounded-lg p-2 text-white"
-            />
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">AI AGENT IMAGE</label>
+                <div className="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center">
+                  <Upload className="mx-auto h-12 w-12 text-gray-400" />
+                  <p className="mt-2">Click to upload or drag and drop</p>
+                  <input
+                    type="file"
+                    onChange={handleFileChange}
+                    className="mt-2 block w-full text-xs text-gray-500"
+                    accept=".jpg, .jpeg, .png, .gif"
+                  />
+                  <p className="text-xs text-gray-500">
+                    SVG, PNG, JPG or GIF (max. 800x400px)
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Nickname</label>
-            <p className="text-xs text-gray-500">The name your friends refer to you by in conversation</p>
-            <input
-              type="text"
-              value={formData.nickname}
-              onChange={(e) => setFormData({ ...formData, nickname: e.target.value })}
-              className="w-full bg-gray-900 rounded-lg p-2 text-white"
-            />
+        {/* Personality Section */}
+        <section className="bg-gray-900 rounded-lg p-6">
+          <h2 className="text-lg font-medium mb-6">Personality</h2>
+          <div className="space-y-6">
+            {renderTextarea('DESCRIPTION', 'description', 'Write a brief overview of your AI Agent.')}
+            {renderTextarea('PERSONALITY', 'personality', 'Describe your AI Agent traits, behavior and demeanor.')}
+            {renderTextarea('FIRST MESSAGE', 'firstMessage', 'Write the first message your AI Agent will send.')}
+            {renderInput('LORE', 'lore', "Write lore about your agent. Separate by ,'s")}
+            {renderInput('STYLE', 'style', "Write your agent's response style. Separate by ,'s")}
+            {renderInput('ADJECTIVES', 'adjectives', "Give your agent some adjectives. Separate by ,'s")}
+            {renderInput('KNOWLEDGE', 'knowledge', "Give your agent some knowledge. Separate by ,'s")}
           </div>
+        </section>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Short Bio</label>
-            <p className="text-xs text-gray-500">The description displayed on the Character Card</p>
-            <input
-              type="text"
-              value={formData.shortBio}
-              onChange={(e) => setFormData({ ...formData, shortBio: e.target.value })}
-              className="w-full bg-gray-900 rounded-lg p-2 text-white"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Avatar URL</label>
-            <p className="text-xs text-gray-500">Provide the link to the avatar image</p>
-            <input
-              type="text"
-              value={formData.avatar}
-              onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
-              className="w-full bg-gray-900 rounded-lg p-2 text-white"
-            />
-          </div>
+        <div className="space-y-4">
+          {saveStatus && (
+            <div
+              className={`p-4 rounded-lg ${
+                saveStatus.includes('Error') ? 'bg-red-900' : 'bg-green-900'
+              }`}
+            >
+              {saveStatus}
+            </div>
+          )}
 
           <button
             onClick={handleSave}
             disabled={loading}
-            className={`w-full bg-blue-600 rounded-lg p-2 text-white hover:bg-blue-700 ${
+            className={`w-full bg-blue-600 rounded-lg p-3 text-white hover:bg-blue-700 ${
               loading ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
-            {loading ? 'Saving...' : 'Save'}
+            {loading ? 'Creating agent...' : 'Create Agent'}
           </button>
         </div>
       </div>
