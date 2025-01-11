@@ -114,12 +114,12 @@ const AIMarketplace = () => {
               <input
                 type="text"
                 placeholder="Search for AI agents"
-                className="w-full p-4 rounded-xl text-gray-800 pr-12 border-2 border-transparent focus:border-indigo-500 transition-all shadow-lg"
+                className="w-full p-2 rounded-xl text-gray-800 pr-12 border-2 border-transparent focus:border-indigo-500 transition-all shadow-lg"
               />
               <Search className="absolute right-4 top-4 text-gray-400" />
             </div>
             <a href="/agentmanagment">
-              <button className="bg-white text-red-500 px-8 py-4 rounded-xl font-semibold hover:bg-red-50 transition-all shadow-lg flex items-center gap-2">
+              <button className="bg-white text-red-500 px-8 py-2 rounded-xl font-semibold hover:bg-red-50 transition-all shadow-lg flex items-center gap-2">
                 <Bot className="w-5 h-5" />
                 Create Agent
               </button>
