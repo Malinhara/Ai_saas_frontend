@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"; // Import necessary components
 import AgentManagement from "./components/Agentmangment";
-// import AIMarketplace from "./components/AIMarketplace";
+import AIMarketplace from "./components/AIMarketplace";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import BotConfig from "./pages/botConfigure";
@@ -36,7 +36,7 @@ function App() {
         />
         <Route path="/agentmanagment" element={<AgentManagement/>}/>
         <Route path="/botconfigure" element={<BotConfig/>}/>
-        // <Route path="/aImarketplace" element={<AIMarketplace/>}/>
+        <Route path="/aImarketplace" element={<AIMarketplace/>}/>
       </Routes>
       <Footer />
     </Router>
