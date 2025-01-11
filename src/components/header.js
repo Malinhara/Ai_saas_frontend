@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../Logichandle/userContex';
 
 export default function Header() {
@@ -7,6 +7,7 @@ export default function Header() {
   const [generateDropdownOpen, setGenerateDropdownOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false); // State for modal visibility
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -24,8 +25,13 @@ export default function Header() {
 
   const handleChatClick = () => {
     if (!user.isLoggedIn) {
-      setShowModal(true); // Show the modal if the user is not logged in
+      setShowModal(true); 
     }
+    else{
+    navigate('/aImarketplace');
+
+    }
+
   };
 
   const closeModal = () => {
@@ -199,8 +205,7 @@ export default function Header() {
               <li>
                 <a
                   onClick={handleChatClick}
-                  className="block py-2 px-3 text-gray-900 rounded cursor-pointer hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
+                  className="block py-2 px-3 text-gray-900 rounded cursor-pointer hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                   Chat
                 </a>
               </li>
