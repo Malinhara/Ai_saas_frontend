@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"; // Import necessary components
-import AgentManagement from "./components/Agentmangment";
+import AgentManagement from "./components/AgentManagment";
 import AIMarketplace from "./components/AIMarketplace";
 import Footer from "./components/footer";
 import Header from "./components/header";
