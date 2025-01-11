@@ -12,7 +12,7 @@ const fetchUserData = async () => {
         const data = response.data;
 
         if (data.success) {
-            console.log(data)
+            localStorage.setItem('agent',1)
             return data.data; // Return the fetched user data
         } else {
             console.error(data.message);
