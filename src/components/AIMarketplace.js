@@ -2,7 +2,7 @@ import { Bot, ChevronRight, Clock, Search, Settings, TrendingUp } from 'lucide-r
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getConfig } from '../Logichandle/Auth';
-import { fetchUserData } from './chatProfile';
+import { fetchAgentData, fetchUserData } from './chatProfile';
 import PhantomWallet from './wallet';
 
 const AIMarketplace = () => {
@@ -13,6 +13,16 @@ const AIMarketplace = () => {
 
   const openModal = () => setIsModalOpen(true); // Function to open the modal
   const closeModal = () => setIsModalOpen(false); // Function to close the modal
+  const [agents, setAgents] = useState([]); // State to store the fetched agents
+
+  useEffect(() => {
+      const getAgentData = async () => {
+          const data = await fetchAgentData(); // Fetch agent data
+          setAgents(data); // Update state with the agent data
+      };
+
+      getAgentData(); // Call the function on component mount
+  }, []); // Empty dependency array means this runs once on component mount
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +59,7 @@ const AIMarketplace = () => {
         onClick={openModal}
         className="bg-blue-600 text-white px-4 py-2 rounded-md"
       >
-        Connect Phantom 
+       Phantom 
       </button>
 
       {/* Modal */}
@@ -174,7 +184,7 @@ const AIMarketplace = () => {
                     />
                     <div>
                       <p className="font-semibold text-lg">{userData?.name || 'Unknown Agent'}</p>
-                      <p className="text-gray-500">{userData?.shortBio || 'No bio available'}</p>
+                      <p className="text-gray-500">{userData?.nickname || 'No bio available'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -204,22 +214,35 @@ const AIMarketplace = () => {
           {/* Latest Agents */}
           <div className="bg-white p-8 rounded-2xl shadow-lg">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-              <Clock className="text-indigo-600" />
-              Latest Agents
+                <Clock className="text-indigo-600" />
+                Latest Agents
             </h2>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-xl transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-100 to-white rounded-xl"></div>
-                  <div>
-                    <p className="font-semibold">Agent Name</p>
-                    <p className="text-gray-500">Agent Symbol</p>
-                  </div>
-                </div>
-                <span className="text-gray-500">Just now</span>
-              </div>
+                {/* Display each agent */}
+                {agents.length === 0 ? (
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-white rounded-xl"></div>
+                ) : (
+                    agents.map((agent) => (
+                        <div key={agent.email} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-xl transition-colors">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 bg-gradient-to-br from-indigo-100 to-white rounded-xl">
+                                    {agent.avatar ? (
+                                        <img src={agent.avatar} alt={`${agent.name} avatar`} className="w-full h-full object-cover rounded-xl" />
+                                    ) : (
+                                        <span className="w-full h-full flex items-center justify-center text-white">{agent.name[0] || 'agent'}</span>
+                                    )}
+                                </div>
+                                <div>
+                                    <p className="font-semibold">{agent.name}</p>
+                                    <p className="text-gray-500">{agent.nickname|| 'symbol'}</p>
+                                </div>
+                            </div>
+                            <span className="text-gray-500">{agent.createdAt || 'just Now'}</span> {/* You can modify this timestamp logic */}
+                        </div>
+                    ))
+                )}
             </div>
-          </div>
+        </div>
 
           {/* Top Agents */}
           <div className="bg-white p-8 rounded-2xl shadow-lg">
@@ -227,18 +250,20 @@ const AIMarketplace = () => {
               <TrendingUp className="text-indigo-600" />
               Top Agents
             </h2>
+           {agents.map((agent) => (
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-xl transition-colors">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-white rounded-xl"></div>
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-white rounded-xl"> <img src={agent.avatar} alt={`${agent.name} avatar`} className="w-full h-full object-cover rounded-xl" /></div>
                   <div>
-                    <p className="font-semibold">Top Agent</p>
-                    <p className="text-gray-500">Top Agent Symbol</p>
+                    <p className="font-semibold">{agent.name}</p>
+                    <p className="text-gray-500">{agent.nickname|| 'symbol'}</p>
                   </div>
                 </div>
                 <span className="text-green-500 font-semibold">$12,345</span>
               </div>
             </div>
+          ))}
           </div>
         </div>
       </div>
