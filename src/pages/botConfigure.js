@@ -8,6 +8,14 @@ import { getStatus } from '../Logichandle/Auth';
 const BotConfig = () => {
   const email = getStatus();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [saveStatus, setSaveStatus] = useState('');
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
+
+  const openModal = () => setIsModalOpen(true); // Function to open the modal
+  const closeModal = () => setIsModalOpen(false); // Function to close the modal
+
   const [formData, setFormData] = useState({
     name: 'Percy Verence',
     nickname: 'Percy Verence',
@@ -24,8 +32,7 @@ const BotConfig = () => {
     knowledge: '',
   });
 
-  const [loading, setLoading] = useState(false);
-  const [saveStatus, setSaveStatus] = useState('');
+
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -72,7 +79,7 @@ const BotConfig = () => {
       }
 
       alert('Bot saved successfully!');
-      localStorage.setItem('agent',1)
+
       navigate('/chat');
     } catch (error) {
       console.error('Error saving bot:', error);
@@ -109,9 +116,28 @@ const BotConfig = () => {
 
   return (
     <div className="min-h-screen bg-black text-gray-300 p-16">
-      <div className="flex justify-between items-center mb-11 float-right">
+  <div className="flex justify-end items-center mb-6 sm:mb-11 mt-5">
+  <button
+    onClick={openModal}
+    className="bg-blue-600 text-white px-4 py-1 rounded-md sm:mr-12"
+  >
+    Phantom
+  </button>
+
+  {isModalOpen && (
+    <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
+      <div className="bg-white rounded-lg p-6 w-11/12 max-w-sm sm:w-80">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold text-black">Phantom Wallet</h2>
+          <button onClick={closeModal} className="text-gray-500">
+            X
+          </button>
+        </div>
         <PhantomWallet />
       </div>
+    </div>
+    )}
+   </div>
 
       <div className="space-y-8">
         {/* Identity Section */}
